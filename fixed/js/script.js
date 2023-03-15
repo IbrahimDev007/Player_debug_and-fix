@@ -27,7 +27,13 @@ for(const button of buttons){
 function getInputValue(inputId){
     const inputField = document.getElementById(inputId);
     const inputFieldValue = inputField.value;
-    return inputFieldValue
+    if (! inputFieldValue || inputFieldValue <0) {
+      
+        alert('input valid value'); 
+    } else {
+        return inputFieldValue 
+    }
+    inputField.innerHTML=``;
 };
 
 function getValueOfElement(elementId, value){
@@ -40,16 +46,23 @@ function getValueOfElement(elementId, value){
 // Budgets add event listeners
 document.getElementById('calculate_budget').addEventListener('click', function(){
     const perPlayerBudget = getInputValue('per_player_budget');
-    let totalPlayerExpense =  perPlayerBudget * 5;
+    let totalPlayerExpense =  isNaN(perPlayerBudget)? '00':perPlayerBudget *5;
     getValueOfElement( 'player_expense', totalPlayerExpense)  
 })
 document.getElementById('calculate_total_budget').addEventListener('click', function(){
     const perPlayerBudget = document.getElementById('player_expense');
     const playerTotalBudget = parseFloat(perPlayerBudget.innerText)
-    const managerBudget = getInputValue('manager_budget');
-    const coachBudget = getInputValue('coach_budget');
-
-    let totalExpense = playerTotalBudget + managerBudget + coachBudget;
+    const managerBudget = parseFloat(getInputValue('manager_budget'));
+    const coachBudget =parseFloat( getInputValue('coach_budget'));
+    if (!managerBudget ||!coachBudget || ( managerBudget ||coachBudget) <0) {
+    
+        alert('input valid value'); 
+       
+    } else {
+        let totalExpense = playerTotalBudget + managerBudget + coachBudget;
         getValueOfElement( 'player_total_expense', totalExpense)
+    }
+
+   
 })
 
