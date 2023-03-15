@@ -27,13 +27,14 @@ for(const button of buttons){
 function getInputValue(inputId){
     const inputField = document.getElementById(inputId);
     const inputFieldValue = inputField.value;
-    if (! inputFieldValue || inputFieldValue <0) {
-      
+    if (! inputFieldValue || inputFieldValue <0) {  
+        inputField.value=''
         alert('input valid value'); 
     } else {
+        inputField.value=''
         return inputFieldValue 
     }
-    inputField.innerHTML=``;
+  
 };
 
 function getValueOfElement(elementId, value){
