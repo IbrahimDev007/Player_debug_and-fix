@@ -17,7 +17,6 @@ for(const button of buttons){
             addPlayer(button.parentNode.children[0].innerText);
         } else{
             button.classList.remove('disabled');
-            addPlayer(button.parentNode.children[0].innerText)
             alert('5 Played already Selected');
         }
     })
@@ -50,13 +49,16 @@ document.getElementById('calculate_budget').addEventListener('click', function()
     let totalPlayerExpense =  isNaN(perPlayerBudget)? '00':perPlayerBudget *5;
     getValueOfElement( 'player_expense', totalPlayerExpense)  
 })
-document.getElementById('calculate_total_budget').addEventListener('click', function(){
+let count =0;
+document.getElementById('calculate_total_budget').addEventListener('click', function(e){
     const perPlayerBudget = document.getElementById('player_expense');
     const playerTotalBudget = parseFloat(perPlayerBudget.innerText)
     const managerBudget = parseFloat(getInputValue('manager_budget'));
     const coachBudget =parseFloat( getInputValue('coach_budget'));
+   
     if (!managerBudget ||!coachBudget || ( managerBudget ||coachBudget) <0) {
-    
+     console.log(count++);
+      
         alert('input valid value'); 
        
     } else {
