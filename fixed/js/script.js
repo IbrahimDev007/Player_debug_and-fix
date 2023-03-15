@@ -45,9 +45,18 @@ function getValueOfElement(elementId, value){
 
 // Budgets add event listeners
 document.getElementById('calculate_budget').addEventListener('click', function(){
-    const perPlayerBudget = getInputValue('per_player_budget');
-    let totalPlayerExpense =  isNaN(perPlayerBudget)? '00':perPlayerBudget *5;
-    getValueOfElement( 'player_expense', totalPlayerExpense)  
+    if (selectedPlayer.children.length >= 4) {
+        document.getElementById('alert_red').setAttribute('hidden', 'false');
+        console.log(true);
+        const perPlayerBudget = getInputValue('per_player_budget');
+        let totalPlayerExpense =  isNaN(perPlayerBudget)? '00':perPlayerBudget *5;
+        getValueOfElement( 'player_expense', totalPlayerExpense)    
+    }
+    else{
+        document.getElementById('alert_red').setAttribute('hidden', 'true');
+        console.log(false);
+    }
+   
 })
 let count =0;
 document.getElementById('calculate_total_budget').addEventListener('click', function(e){
